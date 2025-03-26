@@ -98,8 +98,12 @@ async function fetchTankData() {
         const response = await fetch('/api/tanks');
         
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || 'Failed to fetch data');
+            try {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to fetch data');
+            } catch (e) {
+                throw new Error('Failed to fetch data: ' + response.status);
+            }
         }
         
         const data = await response.json();
@@ -134,19 +138,14 @@ function updateTanks(data) {
         totalUtilizedVolume += rawLevel;
         
         const levelElement = tankElement.querySelector('.tank-level');
-        const levelText = tankElement.querySelector('.level-text');
         const volumeText = tankElement.querySelector('.volume-text');
-        
-        // Format the raw level to 6 digits (padded with zeros if needed)
-        const rawLevelFormatted = String(rawLevel).padStart(6, '0');
         
         // Set actual level display height based on tank capacity
         const levelHeightPercent = Math.min(Math.round((rawLevel / tank.capacity) * 100), 100);
         levelElement.style.height = `${levelHeightPercent}%`;
         
-        // Display raw value as text without any transformations
-        levelText.textContent = `${rawLevelFormatted}`;
-        volumeText.textContent = `${formatNumber(rawLevel)}`;
+        // Display volume with formatting
+        volumeText.textContent = `${formatNumber(rawLevel)} L`;
         
         // Add data attribute for raw level for debugging
         tankElement.setAttribute('data-raw-level', tank.rawLevel);
@@ -190,8 +189,7 @@ function updateTemperatureTab(data) {
         if (!tempCard) return;
         
         const tempValue = tempCard.querySelector('.temp-value');
-        const rawLevelFormatted = String(tank.rawLevel).padStart(6, '0');
-        tempValue.textContent = `${tank.temperature.toFixed(1)}°C (${rawLevelFormatted})`;
+        tempValue.textContent = `${tank.temperature.toFixed(1)}°C`;
         
         // Color coding based on temperature
         if (tank.temperature > 30) {
