@@ -129,12 +129,9 @@ function updateTanks(data) {
         const tankElement = document.getElementById(`tank${tank.tankNumber}`);
         if (!tankElement) return;
         
-        // Get tank capacity
-        const tankCapacity = TANK_CAPACITIES[tank.tankNumber];
-        
-        // Update level
-        const levelPercent = Math.min(Math.max(tank.level, 0), 100); // Ensure between 0-100
-        const volumeInLiters = (levelPercent / 100) * tankCapacity;
+        // Get tank data from server
+        const levelPercent = tank.level;
+        const volumeInLiters = tank.volumeInLiters;
         totalUtilizedVolume += volumeInLiters;
         
         const levelElement = tankElement.querySelector('.tank-level');
@@ -144,6 +141,9 @@ function updateTanks(data) {
         levelElement.style.height = `${levelPercent}%`;
         levelText.textContent = `${levelPercent.toFixed(1)}%`;
         volumeText.textContent = `${formatNumber(Math.round(volumeInLiters))} L`;
+        
+        // Add data attribute for raw level for debugging
+        tankElement.setAttribute('data-raw-level', tank.rawLevel);
         
         // Update color based on level
         if (levelPercent < 20) {
@@ -170,6 +170,9 @@ function updateTanks(data) {
     
     // Update utilized capacity
     utilizedCapacityElement.textContent = `${formatNumber(Math.round(totalUtilizedVolume))} L`;
+    
+    // Add diagnostic info in console
+    console.log('Raw data from server:', data.rawData);
 }
 
 // Function to update temperature tab

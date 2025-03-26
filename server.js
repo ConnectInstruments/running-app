@@ -43,21 +43,40 @@ app.get('/api/tanks', async (req, res) => {
     // Latest record with all data
     const latestData = rows[0];
     
+    // Tank capacities in liters
+    const tankCapacities = {
+      0: 20000,  // Tank 0: 20,000 L
+      1: 150000, // Tank 1: 150,000 L
+      2: 150000, // Tank 2: 150,000 L
+      3: 150000, // Tank 3: 150,000 L
+      4: 150000, // Tank 4: 150,000 L
+      5: 150000  // Tank 5: 150,000 L
+    };
+    
     // Process data for all 6 tanks
     const tanks = [];
     for (let i = 0; i <= 5; i++) {
-      // Tank level data are in DATA0 to DATA5 columns
-      const level = latestData[`DATA${i}`];
+      // Tank level data are in DATA0 to DATA5 columns (raw values)
+      const rawLevel = latestData[`DATA${i}`] || 0;
       
       // Temperature data are in DATA7 to DATA11 columns (Tank 0 = DATA7, Tank 1 = DATA8, etc.)
       const tempIndex = i + 7;
-      const temperature = i < 5 ? latestData[`DATA${tempIndex}`] : 0.0;
+      const temperature = i < 5 ? latestData[`DATA${tempIndex}`] || 0 : 0.0;
+      
+      // Calculate the percentage based on raw value and tank capacity
+      // We'll interpret raw values as current volume in milliliters (ml)
+      const volumeInLiters = rawLevel / 1000; // Convert ml to L
+      const tankCapacity = tankCapacities[i];
+      const levelPercent = Math.min(Math.round((volumeInLiters / tankCapacity) * 100), 100);
       
       // Create tank object and add to array
       tanks.push({
         tankNumber: i,
-        level: level || 0,
-        temperature: temperature || 0,
+        level: levelPercent,
+        rawLevel: rawLevel,
+        volumeInLiters: volumeInLiters,
+        capacity: tankCapacity,
+        temperature: temperature,
         airPressure: latestData.DATA12 || 0 // Air pressure is in DATA12 column
       });
     }
@@ -65,7 +84,8 @@ app.get('/api/tanks', async (req, res) => {
     res.json({
       tanks: tanks,
       airPressure: latestData.DATA12 || 0,
-      timestamp: new Date()
+      timestamp: new Date(),
+      rawData: latestData
     });
     
   } catch (error) {
