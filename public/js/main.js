@@ -124,7 +124,7 @@ async function fetchTankData() {
 // Function to update tank visualizations
 function updateTanks(data) {
     // Update air pressure display
-    airPressureElement.textContent = `${data.airPressure.toFixed(2)} hPa`;
+    airPressureElement.textContent = `${data.airPressure.toFixed(2)} Bar`;
     
     let totalUtilizedVolume = 0;
     
