@@ -150,13 +150,13 @@ function updateTanks(data) {
         // Add data attribute for raw level for debugging
         tankElement.setAttribute('data-raw-level', tank.rawLevel);
         
-        // Update color based on level height percentage
+        // Update color gradient based on level height percentage
         if (levelHeightPercent < 20) {
-            levelElement.style.backgroundColor = '#ef4444'; // Red for low level
+            levelElement.style.background = 'linear-gradient(180deg, #fca5a5, #ef4444)'; // Red for low level
         } else if (levelHeightPercent < 50) {
-            levelElement.style.backgroundColor = '#f97316'; // Orange for medium level
+            levelElement.style.background = 'linear-gradient(180deg, #fdba74, #f97316)'; // Orange for medium level
         } else {
-            levelElement.style.backgroundColor = '#3b82f6'; // Blue for good level
+            levelElement.style.background = 'linear-gradient(180deg, #60a5fa, #3b82f6)'; // Blue for good level
         }
         
         // Update temperature
