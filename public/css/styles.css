@@ -216,6 +216,8 @@ body {
 .tank-container {
     flex: 1;
     position: relative;
+    width: 60px;
+    margin: 0 auto;
     border-radius: 10px;
     background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
     overflow: hidden;

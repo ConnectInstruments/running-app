@@ -75,7 +75,7 @@ app.get('/api/tanks', async (req, res) => {
         volumeInLiters: rawLevel, // Using raw value directly
         capacity: tankCapacity,
         temperature: temperature,
-        airPressure: latestData.DATA12 || 0 // Air pressure is in DATA12 column
+        airPressure: (latestData.DATA12 || 0) / 1000 // Convert hPa to bar
       });
     }
     
