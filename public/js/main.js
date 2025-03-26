@@ -139,7 +139,9 @@ function updateTanks(data) {
         const volumeText = tankElement.querySelector('.volume-text');
         
         levelElement.style.height = `${levelPercent}%`;
-        levelText.textContent = `${levelPercent.toFixed(1)}%`;
+        // Show raw level value with 6 digits (padded with zeros if needed)
+        const rawLevelFormatted = String(tank.rawLevel).padStart(6, '0');
+        levelText.textContent = `${rawLevelFormatted}`;
         volumeText.textContent = `${formatNumber(Math.round(volumeInLiters))} L`;
         
         // Add data attribute for raw level for debugging
@@ -184,7 +186,8 @@ function updateTemperatureTab(data) {
         if (!tempCard) return;
         
         const tempValue = tempCard.querySelector('.temp-value');
-        tempValue.textContent = `${tank.temperature.toFixed(1)}°C`;
+        const rawLevelFormatted = String(tank.rawLevel).padStart(6, '0');
+        tempValue.textContent = `${tank.temperature.toFixed(1)}°C (${rawLevelFormatted})`;
         
         // Color coding based on temperature
         if (tank.temperature > 30) {
