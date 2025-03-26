@@ -7,11 +7,12 @@
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #f0f4f8;
+    background: linear-gradient(135deg, #f6f8fc 0%, #e9f0f9 100%);
     color: #333;
     line-height: 1.6;
     height: 100vh;
     overflow: hidden;
+    min-height: 100vh;
 }
 
 /* Navbar */
@@ -183,17 +184,6 @@ body {
     border-color: rgba(59, 130, 246, 0.1);
 }
 
-.tank::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #1e3a8a);
-    border-radius: 12px 12px 0 0;
-}
-
 .tank-label {
     text-align: center;
     font-weight: 700;
@@ -350,16 +340,6 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-.temp-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #1e3a8a);
-    border-radius: 10px 10px 0 0;
-}
 
 .temp-card:hover {
     transform: translateY(-5px);
@@ -416,15 +396,15 @@ body {
     .dashboard-cards {
         flex-direction: column;
     }
-    
+
     .tanks-row {
         flex-direction: column;
     }
-    
+
     .tank {
         height: 250px;
     }
-    
+
     .sidebar {
         width: 180px;
     }
@@ -434,26 +414,26 @@ body {
     .app-container {
         flex-direction: column;
     }
-    
+
     .sidebar {
         width: 100%;
         height: auto;
         padding: 10px 0;
     }
-    
+
     .sidebar-menu {
         display: flex;
         justify-content: center;
     }
-    
+
     .sidebar-menu li {
         padding: 10px 15px;
     }
-    
+
     .main-content {
         padding: 15px;
     }
-    
+
     .tank {
         height: 200px;
     }
