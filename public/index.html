@@ -3,129 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tank Monitoring System</title>
+    <title>ConnectPro V2.1 - Tank Monitoring</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Tank Monitoring System</h1>
-            <div id="air-pressure">Air Pressure: -- hPa</div>
-        </header>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="logo">ConnectPro V2.1</span>
+        </div>
+        <div class="navbar-time" id="current-time">
+            --:--:--
+        </div>
+    </nav>
 
-        <div class="tanks-container">
-            <div class="tanks-row">
-                <div class="tank-wrapper">
-                    <div class="tank" id="tank0">
-                        <div class="tank-label">Tank 0</div>
-                        <div class="tank-container">
-                            <div class="tank-level"></div>
-                            <div class="tank-markings">
-                                <span>100%</span>
-                                <span>50%</span>
-                                <span>0%</span>
+    <div class="app-container">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="active" data-tab="tank-levels">
+                    <i class="fas fa-tint"></i> Tank Levels
+                </li>
+                <li data-tab="temperature">
+                    <i class="fas fa-thermometer-half"></i> Temperature
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <!-- Dashboard Cards -->
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-title">Total Capacity</div>
+                    <div class="card-value" id="total-capacity">770,000 L</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Utilized Capacity</div>
+                    <div class="card-value" id="utilized-capacity">0 L</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Air Pressure</div>
+                    <div class="card-value" id="air-pressure">-- hPa</div>
+                </div>
+            </div>
+
+            <div class="tab-content">
+                <!-- Tank Levels Tab -->
+                <div class="tab-panel active" id="tank-levels-panel">
+                    <div class="tanks-container">
+                        <div class="tanks-row">
+                            <div class="tank-wrapper">
+                                <div class="tank" id="tank0">
+                                    <div class="tank-label">Tank 0</div>
+                                    <div class="tank-capacity">20,000 L</div>
+                                    <div class="tank-container">
+                                        <div class="tank-level"></div>
+                                        <div class="tank-markings">
+                                            <span>100%</span>
+                                            <span>50%</span>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                    <div class="tank-info">
+                                        <div class="level-text">0.0%</div>
+                                        <div class="volume-text">0 L</div>
+                                        <div class="temp-text">0.0°C</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tank-wrapper">
+                                <div class="tank" id="tank1">
+                                    <div class="tank-label">Tank 1</div>
+                                    <div class="tank-capacity">150,000 L</div>
+                                    <div class="tank-container">
+                                        <div class="tank-level"></div>
+                                        <div class="tank-markings">
+                                            <span>100%</span>
+                                            <span>50%</span>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                    <div class="tank-info">
+                                        <div class="level-text">0.0%</div>
+                                        <div class="volume-text">0 L</div>
+                                        <div class="temp-text">0.0°C</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tank-wrapper">
+                                <div class="tank" id="tank2">
+                                    <div class="tank-label">Tank 2</div>
+                                    <div class="tank-capacity">150,000 L</div>
+                                    <div class="tank-container">
+                                        <div class="tank-level"></div>
+                                        <div class="tank-markings">
+                                            <span>100%</span>
+                                            <span>50%</span>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                    <div class="tank-info">
+                                        <div class="level-text">0.0%</div>
+                                        <div class="volume-text">0 L</div>
+                                        <div class="temp-text">0.0°C</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="tank-info">
-                            <div class="level-text">0.0%</div>
-                            <div class="temp-text">0.0°C</div>
+                        <div class="tanks-row">
+                            <div class="tank-wrapper">
+                                <div class="tank" id="tank3">
+                                    <div class="tank-label">Tank 3</div>
+                                    <div class="tank-capacity">150,000 L</div>
+                                    <div class="tank-container">
+                                        <div class="tank-level"></div>
+                                        <div class="tank-markings">
+                                            <span>100%</span>
+                                            <span>50%</span>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                    <div class="tank-info">
+                                        <div class="level-text">0.0%</div>
+                                        <div class="volume-text">0 L</div>
+                                        <div class="temp-text">0.0°C</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tank-wrapper">
+                                <div class="tank" id="tank4">
+                                    <div class="tank-label">Tank 4</div>
+                                    <div class="tank-capacity">150,000 L</div>
+                                    <div class="tank-container">
+                                        <div class="tank-level"></div>
+                                        <div class="tank-markings">
+                                            <span>100%</span>
+                                            <span>50%</span>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                    <div class="tank-info">
+                                        <div class="level-text">0.0%</div>
+                                        <div class="volume-text">0 L</div>
+                                        <div class="temp-text">0.0°C</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tank-wrapper">
+                                <div class="tank" id="tank5">
+                                    <div class="tank-label">Tank 5</div>
+                                    <div class="tank-capacity">150,000 L</div>
+                                    <div class="tank-container">
+                                        <div class="tank-level"></div>
+                                        <div class="tank-markings">
+                                            <span>100%</span>
+                                            <span>50%</span>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                    <div class="tank-info">
+                                        <div class="level-text">0.0%</div>
+                                        <div class="volume-text">0 L</div>
+                                        <div class="temp-text">0.0°C</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="tank-wrapper">
-                    <div class="tank" id="tank1">
-                        <div class="tank-label">Tank 1</div>
-                        <div class="tank-container">
-                            <div class="tank-level"></div>
-                            <div class="tank-markings">
-                                <span>100%</span>
-                                <span>50%</span>
-                                <span>0%</span>
+                
+                <!-- Temperature Tab -->
+                <div class="tab-panel" id="temperature-panel">
+                    <div class="temperature-container">
+                        <h2>Temperature Monitor</h2>
+                        <div class="temp-readings">
+                            <div class="temp-card" id="temp-card-0">
+                                <div class="temp-title">Tank 0</div>
+                                <div class="temp-value">0.0°C</div>
                             </div>
-                        </div>
-                        <div class="tank-info">
-                            <div class="level-text">0.0%</div>
-                            <div class="temp-text">0.0°C</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tank-wrapper">
-                    <div class="tank" id="tank2">
-                        <div class="tank-label">Tank 2</div>
-                        <div class="tank-container">
-                            <div class="tank-level"></div>
-                            <div class="tank-markings">
-                                <span>100%</span>
-                                <span>50%</span>
-                                <span>0%</span>
+                            <div class="temp-card" id="temp-card-1">
+                                <div class="temp-title">Tank 1</div>
+                                <div class="temp-value">0.0°C</div>
                             </div>
-                        </div>
-                        <div class="tank-info">
-                            <div class="level-text">0.0%</div>
-                            <div class="temp-text">0.0°C</div>
+                            <div class="temp-card" id="temp-card-2">
+                                <div class="temp-title">Tank 2</div>
+                                <div class="temp-value">0.0°C</div>
+                            </div>
+                            <div class="temp-card" id="temp-card-3">
+                                <div class="temp-title">Tank 3</div>
+                                <div class="temp-value">0.0°C</div>
+                            </div>
+                            <div class="temp-card" id="temp-card-4">
+                                <div class="temp-title">Tank 4</div>
+                                <div class="temp-value">0.0°C</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="tanks-row">
-                <div class="tank-wrapper">
-                    <div class="tank" id="tank3">
-                        <div class="tank-label">Tank 3</div>
-                        <div class="tank-container">
-                            <div class="tank-level"></div>
-                            <div class="tank-markings">
-                                <span>100%</span>
-                                <span>50%</span>
-                                <span>0%</span>
-                            </div>
-                        </div>
-                        <div class="tank-info">
-                            <div class="level-text">0.0%</div>
-                            <div class="temp-text">0.0°C</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tank-wrapper">
-                    <div class="tank" id="tank4">
-                        <div class="tank-label">Tank 4</div>
-                        <div class="tank-container">
-                            <div class="tank-level"></div>
-                            <div class="tank-markings">
-                                <span>100%</span>
-                                <span>50%</span>
-                                <span>0%</span>
-                            </div>
-                        </div>
-                        <div class="tank-info">
-                            <div class="level-text">0.0%</div>
-                            <div class="temp-text">0.0°C</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tank-wrapper">
-                    <div class="tank" id="tank5">
-                        <div class="tank-label">Tank 5</div>
-                        <div class="tank-container">
-                            <div class="tank-level"></div>
-                            <div class="tank-markings">
-                                <span>100%</span>
-                                <span>50%</span>
-                                <span>0%</span>
-                            </div>
-                        </div>
-                        <div class="tank-info">
-                            <div class="level-text">0.0%</div>
-                            <div class="temp-text">0.0°C</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="controls">
-            <div id="status-text">Loading data...</div>
-            <button id="refresh-button">Refresh</button>
-        </div>
+            <div class="controls">
+                <div id="status-text">Loading data...</div>
+                <button id="refresh-button">Refresh Data</button>
+            </div>
+        </main>
     </div>
 
     <script src="js/main.js"></script>
