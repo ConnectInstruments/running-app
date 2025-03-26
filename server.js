@@ -10,8 +10,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Enable CORS
-app.use(cors());
+// Enable CORS with specific origin
+app.use(cors({
+  origin: ['https://connectpro.connectinstruments.ae', 'http://localhost:5000'],
+  credentials: true
+}));
 
 // Serve static files from the public directory
 app.use(express.static('public'));
@@ -102,6 +105,6 @@ app.get('/', (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(80, '0.0.0.0', () => {
+  console.log(`Server running on port ${process.env.PORT || 80}`);
 });
