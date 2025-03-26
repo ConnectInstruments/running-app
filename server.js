@@ -63,18 +63,16 @@ app.get('/api/tanks', async (req, res) => {
       const tempIndex = i + 7;
       const temperature = i < 5 ? latestData[`DATA${tempIndex}`] || 0 : 0.0;
       
-      // Calculate the percentage based on raw value and tank capacity
-      // We'll interpret raw values as current volume in milliliters (ml)
-      const volumeInLiters = rawLevel / 1000; // Convert ml to L
+      // Get the tank capacity
       const tankCapacity = tankCapacities[i];
-      const levelPercent = Math.min(Math.round((volumeInLiters / tankCapacity) * 100), 100);
       
-      // Create tank object and add to array
+      // Create tank object and add to array - passing raw values directly
       tanks.push({
         tankNumber: i,
-        level: levelPercent,
+        level: rawLevel, // Using raw level value directly
         rawLevel: rawLevel,
-        volumeInLiters: volumeInLiters,
+        rawTemperature: temperature,
+        volumeInLiters: rawLevel, // Using raw value directly
         capacity: tankCapacity,
         temperature: temperature,
         airPressure: latestData.DATA12 || 0 // Air pressure is in DATA12 column

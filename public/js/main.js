@@ -129,28 +129,32 @@ function updateTanks(data) {
         const tankElement = document.getElementById(`tank${tank.tankNumber}`);
         if (!tankElement) return;
         
-        // Get tank data from server
-        const levelPercent = tank.level;
-        const volumeInLiters = tank.volumeInLiters;
-        totalUtilizedVolume += volumeInLiters;
+        // Get raw tank data from server
+        const rawLevel = tank.rawLevel;
+        totalUtilizedVolume += rawLevel;
         
         const levelElement = tankElement.querySelector('.tank-level');
         const levelText = tankElement.querySelector('.level-text');
         const volumeText = tankElement.querySelector('.volume-text');
         
-        levelElement.style.height = `${levelPercent}%`;
-        // Show raw level value with 6 digits (padded with zeros if needed)
-        const rawLevelFormatted = String(tank.rawLevel).padStart(6, '0');
+        // Format the raw level to 6 digits (padded with zeros if needed)
+        const rawLevelFormatted = String(rawLevel).padStart(6, '0');
+        
+        // Set actual level display height based on tank capacity
+        const levelHeightPercent = Math.min(Math.round((rawLevel / tank.capacity) * 100), 100);
+        levelElement.style.height = `${levelHeightPercent}%`;
+        
+        // Display raw value as text without any transformations
         levelText.textContent = `${rawLevelFormatted}`;
-        volumeText.textContent = `${formatNumber(Math.round(volumeInLiters))} L`;
+        volumeText.textContent = `${formatNumber(rawLevel)}`;
         
         // Add data attribute for raw level for debugging
         tankElement.setAttribute('data-raw-level', tank.rawLevel);
         
-        // Update color based on level
-        if (levelPercent < 20) {
+        // Update color based on level height percentage
+        if (levelHeightPercent < 20) {
             levelElement.style.backgroundColor = '#ef4444'; // Red for low level
-        } else if (levelPercent < 50) {
+        } else if (levelHeightPercent < 50) {
             levelElement.style.backgroundColor = '#f97316'; // Orange for medium level
         } else {
             levelElement.style.backgroundColor = '#3b82f6'; // Blue for good level
