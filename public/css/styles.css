@@ -167,40 +167,59 @@ body {
     display: flex;
     flex-direction: column;
     height: 300px;
-    border-radius: 8px;
+    border-radius: 12px;
     background-color: #fff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    transition: transform 0.2s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    padding: 18px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .tank:hover {
-    transform: scale(1.02);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.15);
+}
+
+.tank::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #1e3a8a);
+    border-radius: 12px 12px 0 0;
 }
 
 .tank-label {
     text-align: center;
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-weight: 700;
+    font-size: 1.2rem;
     color: #1e3a8a;
     margin-bottom: 5px;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
 }
 
 .tank-capacity {
     text-align: center;
-    font-size: 0.8rem;
-    color: #777;
-    margin-bottom: 10px;
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
 }
 
 .tank-container {
     flex: 1;
     position: relative;
-    border: 2px solid #1e3a8a;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    border-radius: 10px;
+    background-color: #f1f5f9;
     overflow: hidden;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .tank-level {
@@ -208,39 +227,83 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #3b82f6; /* Blue */
-    transition: height 1s ease-out;
+    background: linear-gradient(180deg, #60a5fa, #3b82f6);
+    transition: height 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     height: 0%;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 3px 10px rgba(255, 255, 255, 0.3);
+}
+
+.tank-level::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    animation: waterSurface 2s infinite linear;
+}
+
+@keyframes waterSurface {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
 .tank-markings {
     position: absolute;
-    right: 5px;
+    right: 10px;
     top: 0;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     font-size: 10px;
-    color: #555;
+    color: #64748b;
     z-index: 1;
-    padding: 5px 0;
+    padding: 8px 0;
+}
+
+.tank-markings span {
+    position: relative;
+}
+
+.tank-markings span::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 1px;
+    background-color: #64748b;
+    left: -10px;
+    top: 50%;
 }
 
 .tank-info {
-    margin-top: 10px;
+    margin-top: 14px;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
 }
 
-.level-text, .volume-text, .temp-text {
-    font-size: 0.9rem;
+.volume-text, .temp-text {
+    font-size: 0.95rem;
     margin: 3px 0;
+    font-weight: 500;
+    color: #475569;
+    display: flex;
+    align-items: center;
 }
 
-.level-text {
-    font-weight: bold;
-    color: #1e3a8a;
+.volume-text::before {
+    content: '💧';
+    margin-right: 5px;
+    font-size: 1.1rem;
+}
+
+.temp-text::before {
+    content: '🌡️';
+    margin-right: 5px;
+    font-size: 1.1rem;
 }
 
 /* Temperature Tab */
