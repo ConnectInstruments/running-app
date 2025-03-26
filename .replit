@@ -13,14 +13,10 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Android Build"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Android App Viewer"
+args = "Tank Monitoring Server"
 
 [[workflows.workflow]]
-name = "Android Build"
+name = "Tank Monitoring Server"
 author = "agent"
 
 [workflows.workflow.metadata]
@@ -31,21 +27,12 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "./gradlew assembleDebug"
-
-[[workflows.workflow]]
-name = "Android App Viewer"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "./gradlew installDebug && adb shell am start -n com.tanklevel.app/.MainActivity"
+args = "node server.js"
+waitForPort = 5000
 
 [deployment]
 run = ["sh", "-c", "./gradlew assembleDebug"]
+
+[[ports]]
+localPort = 5000
+externalPort = 80
