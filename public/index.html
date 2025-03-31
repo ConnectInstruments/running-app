@@ -6,14 +6,21 @@
     <title>ConnectPro V2.1 - Tank Monitoring</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar-brand">
-            <span class="logo">ConnectPro V2.1</span>
+            <span class="logo">ConnectPro <span class="version">V2.1</span></span>
         </div>
-        <div class="navbar-time" id="current-time">
-            --:--:--
+        <div class="navbar-controls">
+            <div class="navbar-time" id="current-time">
+                <span>--:--:--</span>
+                <i class="far fa-clock"></i>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </nav>
 
@@ -26,23 +33,51 @@
                 <li data-tab="temperature">
                     <i class="fas fa-thermometer-half"></i> Temperature
                 </li>
+                <li data-tab="settings">
+                    <i class="fas fa-cog"></i> Settings
+                </li>
             </ul>
         </aside>
 
         <main class="main-content">
+            <!-- Controls -->
+            <div class="controls">
+                <span id="status-text">Last updated: Never</span>
+                <button id="refresh-button">
+                    <i class="fas fa-sync-alt"></i>
+                    Refresh Data
+                </button>
+            </div>
+
             <!-- Dashboard Cards -->
             <div class="dashboard-cards">
                 <div class="card">
                     <div class="card-title">Total Capacity</div>
-                    <div class="card-value" id="total-capacity">770,000 L</div>
+                    <div class="card-value">
+                        <i class="fas fa-database"></i>
+                        <span id="total-capacity">770,000 L</span>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="card-title">Utilized Capacity</div>
-                    <div class="card-value" id="utilized-capacity">0 L</div>
+                    <div class="card-value">
+                        <i class="fas fa-fill-drip"></i>
+                        <span id="utilized-capacity">0 L</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Utilization Rate</div>
+                    <div class="card-value">
+                        <i class="fas fa-percentage"></i>
+                        <span id="utilization-rate">0%</span>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="card-title">Air Pressure</div>
-                    <div class="card-value" id="air-pressure">-- bar</div>
+                    <div class="card-value">
+                        <i class="fas fa-wind"></i>
+                        <span id="air-pressure">-- bar</span>
+                    </div>
                 </div>
             </div>
 
@@ -53,7 +88,9 @@
                         <div class="tanks-row">
                             <div class="tank-wrapper">
                                 <div class="tank" id="tank0">
-                                    <div class="tank-label">Tank 0</div>
+                                    <div class="tank-label">
+                                        <i class="fas fa-tint"></i> Tank 0
+                                    </div>
                                     <div class="tank-capacity">20,000 L</div>
                                     <div class="tank-container">
                                         <div class="tank-level"></div>
@@ -64,8 +101,14 @@
                                         </div>
                                     </div>
                                     <div class="tank-info">
-                                        <div class="volume-text">0 L</div>
-                                        <div class="temp-text">0.0°C</div>
+                                        <div class="volume-text">
+                                            <i class="fas fa-water"></i>
+                                            <span>0 L</span>
+                                        </div>
+                                        <div class="temp-text">
+                                            <i class="fas fa-temperature-high"></i>
+                                            <span>0.0°C</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -82,8 +125,14 @@
                                         </div>
                                     </div>
                                     <div class="tank-info">
-                                        <div class="volume-text">0 L</div>
-                                        <div class="temp-text">0.0°C</div>
+                                        <div class="volume-text">
+                                            <i class="fas fa-water"></i>
+                                            <span>0 L</span>
+                                        </div>
+                                        <div class="temp-text">
+                                            <i class="fas fa-temperature-high"></i>
+                                            <span>0.0°C</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -100,8 +149,14 @@
                                         </div>
                                     </div>
                                     <div class="tank-info">
-                                        <div class="volume-text">0 L</div>
-                                        <div class="temp-text">0.0°C</div>
+                                        <div class="volume-text">
+                                            <i class="fas fa-water"></i>
+                                            <span>0 L</span>
+                                        </div>
+                                        <div class="temp-text">
+                                            <i class="fas fa-temperature-high"></i>
+                                            <span>0.0°C</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -120,8 +175,14 @@
                                         </div>
                                     </div>
                                     <div class="tank-info">
-                                        <div class="volume-text">0 L</div>
-                                        <div class="temp-text">0.0°C</div>
+                                        <div class="volume-text">
+                                            <i class="fas fa-water"></i>
+                                            <span>0 L</span>
+                                        </div>
+                                        <div class="temp-text">
+                                            <i class="fas fa-temperature-high"></i>
+                                            <span>0.0°C</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -138,8 +199,14 @@
                                         </div>
                                     </div>
                                     <div class="tank-info">
-                                        <div class="volume-text">0 L</div>
-                                        <div class="temp-text">0.0°C</div>
+                                        <div class="volume-text">
+                                            <i class="fas fa-water"></i>
+                                            <span>0 L</span>
+                                        </div>
+                                        <div class="temp-text">
+                                            <i class="fas fa-temperature-high"></i>
+                                            <span>0.0°C</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -156,8 +223,14 @@
                                         </div>
                                     </div>
                                     <div class="tank-info">
-                                        <div class="volume-text">0 L</div>
-                                        <div class="temp-text">0.0°C</div>
+                                        <div class="volume-text">
+                                            <i class="fas fa-water"></i>
+                                            <span>0 L</span>
+                                        </div>
+                                        <div class="temp-text">
+                                            <i class="fas fa-temperature-high"></i>
+                                            <span>0.0°C</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +241,7 @@
                 <!-- Temperature Tab -->
                 <div class="tab-panel" id="temperature-panel">
                     <div class="temperature-container">
-                        <h2>Temperature Monitor</h2>
+                        <h2>Temperature Readings</h2>
                         <div class="temp-readings">
                             <div class="temp-card" id="temp-card-0">
                                 <div class="temp-title">Tank 0</div>
@@ -193,13 +266,69 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="controls">
-                <div id="status-text">Loading data...</div>
-                <button id="refresh-button">Refresh Data</button>
+                <!-- Settings Tab -->
+                <div class="tab-panel" id="settings-panel">
+                    <div class="settings-container">
+                        <div class="settings-header">
+                            <h2>Tank Management</h2>
+                            <button class="add-tank-btn" id="addTankBtn">
+                                <i class="fas fa-plus"></i> Add New Tank
+                            </button>
+                        </div>
+
+                        <div class="tanks-list">
+                            <div class="tanks-list-header">
+                                <div class="tank-col">Tank Name</div>
+                                <div class="tank-col">Capacity</div>
+                                <div class="tank-col">Level DB Field</div>
+                                <div class="tank-col">Temp DB Field</div>
+                                <div class="tank-col">Actions</div>
+                            </div>
+                            <div class="tanks-list-body" id="tanksListBody">
+                                <!-- Tank items will be populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
+    </div>
+
+    <!-- Add Tank Modal -->
+    <div class="modal" id="addTankModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Tank</h3>
+                <button class="close-btn" id="closeTankModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addTankForm">
+                    <div class="form-group">
+                        <label for="tankName">Tank Name</label>
+                        <input type="text" id="tankName" required placeholder="Enter tank name">
+                    </div>
+                    <div class="form-group">
+                        <label for="tankCapacity">Capacity (L)</label>
+                        <input type="number" id="tankCapacity" required placeholder="Enter capacity in liters">
+                    </div>
+                    <div class="form-group">
+                        <label for="levelField">Level Database Field</label>
+                        <input type="text" id="levelField" required placeholder="e.g., DATA0">
+                    </div>
+                    <div class="form-group">
+                        <label for="tempField">Temperature Database Field</label>
+                        <input type="text" id="tempField" required placeholder="e.g., DATA6">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn" id="cancelTankAdd">Cancel</button>
+                        <button type="submit" class="submit-btn">Add Tank</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="js/main.js"></script>

@@ -31,7 +31,11 @@ args = "node server.js"
 waitForPort = 5000
 
 [deployment]
-run = ["sh", "-c", "./gradlew assembleDebug"]
+run = ["sh", "-c", "node server.js"]
+
+[[ports]]
+localPort = 80
+externalPort = 3000
 
 [[ports]]
 localPort = 5000
